@@ -1,8 +1,5 @@
 /**
  * clients.js — P4
- * The core of the app: load/render/add/delete (CORE), plus status
- * change, search/filter/sort, and the details modal with notes and
- * a follow-up reminder (FULL).
  */
 
 let clientsState = [];
@@ -13,7 +10,7 @@ let activeDetailClientId = null;
 
 const STATUSES = ['Lead', 'Contacted', 'Won', 'Lost'];
 
-// -------------------------------------------------------------- Loading ---
+// -- Loading ---
 
 async function initClientsPage() {
   const listEl = document.getElementById('client-list');
@@ -39,7 +36,7 @@ function persistClients() {
   saveClients(clientsState);
 }
 
-// --------------------------------------------------- Filter/search/sort ---
+// --- Filter/search/sort ---
 
 function getVisibleClients() {
   let list = clientsState;
@@ -55,7 +52,7 @@ function getVisibleClients() {
     );
   }
 
-  // Sort on a copy so the underlying state array order is never mutated.
+  // Sorted 
   const sorted = [...list];
   if (activeSort === 'newest') {
     sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -72,7 +69,7 @@ function refreshList() {
   renderClients(getVisibleClients());
 }
 
-// ------------------------------------------------------------ Rendering ---
+// --- Rendering ---
 
 function statusBadgeClass(status) {
   return `badge-${status.toLowerCase()}`;
@@ -140,7 +137,7 @@ function wireCardEvents() {
   });
 }
 
-// -------------------------------------------------------- Status change ---
+// --- Status change ---
 
 function updateClientStatus(clientId, newStatus) {
   const client = clientsState.find((c) => c.id === clientId);
@@ -150,7 +147,7 @@ function updateClientStatus(clientId, newStatus) {
   refreshList();
 }
 
-// --------------------------------------------------------------- Delete ---
+// --- Delete ---
 
 async function handleDeleteClient(clientId) {
   const confirmed = window.confirm('Delete this client? This cannot be undone.');
@@ -168,7 +165,7 @@ async function handleDeleteClient(clientId) {
   }
 }
 
-// ---------------------------------------------------------- Add Client ---
+// --- Add Client ---
 
 function setupAddClientModal() {
   const openBtn = document.getElementById('add-client-btn');
@@ -260,7 +257,7 @@ function setupAddClientModal() {
   });
 }
 
-// ------------------------------------------------------ Search/filter UI --
+// -- Search/filter UI --
 
 function setupToolbar() {
   const searchInput = document.getElementById('client-search');
@@ -287,7 +284,7 @@ function setupToolbar() {
   });
 }
 
-// --------------------------------------------------------- Detail modal --
+// -- Detail modal --
 
 function openDetailModal(clientId) {
   const client = clientsState.find((c) => c.id === clientId);
@@ -359,7 +356,7 @@ function setupDetailModal() {
   });
 }
 
-// -------------------------------------------------------------- Bootstrap --
+// -- Bootstrap --
 
 document.addEventListener('DOMContentLoaded', () => {
   const session = initProtectedPage('clients');

@@ -1,11 +1,9 @@
 /**
  * auth.js
- * P1 (Sign Up) and P2 (Login) logic. Each page's HTML only includes
- * the form relevant to it, so both setup functions no-op safely if
- * their form isn't present on the current page.
+ * P1 (Sign Up) and P2 (Login) logic. 
  */
 
-// ------------------------------------------------------------ P1 Sign Up --
+// -- P1 Sign Up --
 
 function setupSignupForm() {
   const form = document.getElementById('signup-form');
@@ -68,7 +66,7 @@ function setupSignupForm() {
       id: Date.now(),
       fullName: fullName.trim(),
       email,
-      password, // plaintext — see security note in README/PRD; no backend in this project
+      password, 
       company,
       createdAt: new Date().toISOString(),
     };
@@ -83,7 +81,8 @@ function setupSignupForm() {
   });
 }
 
-// -------------------------------------------------------------- P2 Login --
+
+// --  P2 Login --
 
 function setupLoginForm() {
   const form = document.getElementById('login-form');
@@ -122,8 +121,6 @@ function setupLoginForm() {
     );
 
     if (!match) {
-      // Deliberately generic — real products never reveal which half was wrong
-      // (P2.2: don't let an attacker learn which emails are registered).
       fields.email.classList.add('has-error');
       showFieldError(fields.password, 'Invalid email or password');
       return;
