@@ -37,3 +37,6 @@ Built solo with AI assistance (see `ai-log.md` for the full log of prompts, outp
 
 ## Setup Instructions
 Open index.html directly or use Live Server.
+
+## Browser Support
+Supports Chrome, Firefox, Edge, Safari.
