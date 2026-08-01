@@ -43,3 +43,5 @@ Event listener — ფუნქცია, რომელიც ავტომ�
 Deployment — პროცესი, რომლის დროსაც აპლიკაცია ქვეყნდება ინტერნეტში, ცოცხალ URL-ზე ხელმისაწვდომი რომ გახდეს.
 
 11. **Local Storage**: Browser database for standard client persistence.
+
+12. **DOM**: Document Object Model for interactive UI manipulation.
