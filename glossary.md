@@ -41,3 +41,5 @@ Event listener — ფუნქცია, რომელიც ავტომ�
 **10. Deployment**
 *"Deployment is the process of publishing an application so it's reachable on a live URL."*
 Deployment — პროცესი, რომლის დროსაც აპლიკაცია ქვეყნდება ინტერნეტში, ცოცხალ URL-ზე ხელმისაწვდომი რომ გახდეს.
+
+11. **Local Storage**: Browser database for standard client persistence.
