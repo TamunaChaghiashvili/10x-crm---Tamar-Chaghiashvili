@@ -34,3 +34,6 @@ You can sign up with any email, or register `demo@test.com` / `demo1234` as a sh
 ## Credits
 
 Built solo with AI assistance (see `ai-log.md` for the full log of prompts, outputs, and what was kept vs. rewritten).
+
+## Setup Instructions
+Open index.html directly or use Live Server.
