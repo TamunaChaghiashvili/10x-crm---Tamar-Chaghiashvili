@@ -1,7 +1,5 @@
 /**
  * toast.js
- * Global success/error notifications. Never uses browser alert() per
- * PRD P0.4 — confirm() is still allowed for delete confirmations.
  */
 
 function ensureToastStack() {

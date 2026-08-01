@@ -1,11 +1,9 @@
 /**
  * data.js
- * Shared client-data logic used by both dashboard.js and clients.js
- * (P3.5 — "same shared logic" requirement). Handles the DummyJSON
- * fetch → transform → localStorage flow described in P4.2/5.5.
  */
 
 const API_BASE = 'https://dummyjson.com';
+
 
 /** Turn one DummyJSON user record into our Client shape. */
 function transformApiUser(apiUser) {
@@ -23,7 +21,7 @@ function transformApiUser(apiUser) {
   };
 }
 
-/** Always hits the API fresh and transforms the result. Used for first load and Reset. */
+
 async function fetchFreshClientsFromApi() {
   const res = await fetch(`${API_BASE}/users?limit=30`);
   if (!res.ok) {
@@ -34,9 +32,7 @@ async function fetchFreshClientsFromApi() {
 }
 
 /**
- * Main entry point: return clients from localStorage if we already have
- * them, otherwise fetch from the API and persist. Shared by dashboard
- * and clients pages so there's exactly one loading path (P3.5).
+ * Main entry point: (P3.5).
  */
 async function loadClients() {
   const existing = getClients();
@@ -48,7 +44,7 @@ async function loadClients() {
   return fresh;
 }
 
-/** POST a new client to the API, then prepend the server's response to state. */
+/** POST a new client to the API */
 async function addClientViaApi(clientPayload) {
   const res = await fetch(`${API_BASE}/users/add`, {
     method: 'POST',
@@ -60,8 +56,7 @@ async function addClientViaApi(clientPayload) {
   }
   const serverResponse = await res.json();
 
-  // DummyJSON echoes back an id but not the fields we care about for the
-  // UI, so we keep our own payload and just adopt the server-issued id.
+  // return 
   return {
     ...clientPayload,
     id: serverResponse.id,
@@ -71,9 +66,7 @@ async function addClientViaApi(clientPayload) {
 }
 
 /**
- * DELETE a client via the API. DummyJSON doesn't actually persist deletes,
- * and it can 404 for ids we created client-side (it never stored them) —
- * that's expected, so we treat both 200 and 404 as "fine, remove locally".
+ * DELETE a client via the API. 
  */
 async function deleteClientViaApi(clientId) {
   const res = await fetch(`${API_BASE}/users/${clientId}`, { method: 'DELETE' });

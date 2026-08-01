@@ -1,7 +1,5 @@
 /**
  * dashboard.js — P3
- * Greeting + live clock, 4 stat cards, pipeline overview (signal bars),
- * and the 5 most recently added clients.
  */
 
 const STATUS_ORDER = ['Lead', 'Contacted', 'Won', 'Lost'];

@@ -1,14 +1,9 @@
 /**
  * guard.js
  * P0 — global rules shared by every page:
- *   - Auth guard (protected pages redirect to login, public pages redirect
- *     to dashboard if already logged in)
- *   - Shared sidebar navigation (injected once, not copy-pasted per page)
- *   - Theme (dark/light), persisted in crm_theme, default dark
- *
- * Each HTML page includes this file and calls exactly one of:
- *   initProtectedPage('dashboard' | 'clients' | 'profile')
- *   initPublicPage()
+ *   - Auth guard
+ *   - Shared sidebar navigation 
+ *   - Theme (dark/light)
  */
 
 const NAV_ITEMS = [
@@ -17,7 +12,7 @@ const NAV_ITEMS = [
   { key: 'profile', label: 'Profile', href: 'profile.html' },
 ];
 
-// ---------------------------------------------------------------- Theme ---
+// --- Theme ---
 
 function applyTheme() {
   const theme = storageGet(STORAGE_KEYS.THEME, 'dark');
@@ -34,9 +29,9 @@ function toggleTheme() {
   if (label) label.textContent = next === 'dark' ? 'Dark mode' : 'Light mode';
 }
 
-// ------------------------------------------------------------- Auth guard --
+// -- Auth guard --
 
-/** Protected pages call this immediately on load. */
+
 function requireSession() {
   const session = getSession();
   if (!session) {
@@ -46,7 +41,7 @@ function requireSession() {
   return session;
 }
 
-/** Public pages (login/signup) call this — bounce logged-in users forward. */
+
 function redirectIfLoggedIn() {
   const session = getSession();
   if (session) {
@@ -54,7 +49,7 @@ function redirectIfLoggedIn() {
   }
 }
 
-// ------------------------------------------------------------ Navigation --
+// -- Navigation --
 
 function buildSidebar(activeKey) {
   const links = NAV_ITEMS.map((item) => {
@@ -93,14 +88,13 @@ function mountSidebar(activeKey) {
 }
 
 function logout() {
-  // Only the session is cleared — crm_users and crm_clients must survive.
   clearSession();
   window.location.href = 'index.html';
 }
 
-// ------------------------------------------------------------ Page inits --
+// -- Page inits --
 
-/** Call at the top of every protected page (dashboard/clients/profile). */
+
 function initProtectedPage(activeKey) {
   applyTheme();
   const session = requireSession();
@@ -109,7 +103,7 @@ function initProtectedPage(activeKey) {
   return session;
 }
 
-/** Call at the top of every public page (index/signup). */
+
 function initPublicPage() {
   applyTheme();
   redirectIfLoggedIn();

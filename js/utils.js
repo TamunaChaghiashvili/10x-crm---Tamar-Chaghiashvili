@@ -1,7 +1,5 @@
 /**
  * utils.js
- * Small formatting helpers shared across dashboard.js, clients.js,
- * and profile.js — kept in one place instead of copy-pasted three times.
  */
 
 function formatCurrency(amount) {

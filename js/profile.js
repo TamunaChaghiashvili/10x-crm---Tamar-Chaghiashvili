@@ -1,7 +1,5 @@
 /**
  * profile.js — P5
- * Info block, edit name/company (A), change password (B),
- * and reset CRM data (C).
  */
 
 function renderProfileInfo(user) {
